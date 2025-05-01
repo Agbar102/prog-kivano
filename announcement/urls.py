@@ -1,9 +1,14 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter, SimpleRouter
+from django.urls import path, include
+from announcement import views
+from announcement.views import ItemViewSet, RecallViewSet
 
-from announcement.views import AnnouncementListAPIView, AnnouncementUpdateAPIView
-from category.urls import urlpatterns
+router = DefaultRouter()
+
+router.register(r"items", ItemViewSet)
+router.register(r"recall", RecallViewSet)
 
 urlpatterns = [
-    path("list", AnnouncementListAPIView.as_view()),
-    path("update", AnnouncementUpdateAPIView.as_view())
+    path("", views.CreateItemAPIView.as_view()),
+    path('', include(router.urls)),
 ]

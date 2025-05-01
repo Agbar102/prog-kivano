@@ -22,8 +22,7 @@ class Category(CommonInfo):
 
 
 class SubCategory(CommonInfo):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='sub_categories'
-    )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='sub_categories', null=True)
 
     class Meta:
         db_table = "sub_category_tb"
